@@ -30,7 +30,6 @@ namespace KhoaGayAnCut
         private void InitializeComponent()
         {
             this.textBoxMsg = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnCopy = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxKey = new System.Windows.Forms.TextBox();
@@ -63,7 +62,7 @@ namespace KhoaGayAnCut
             this.key33 = new System.Windows.Forms.TextBox();
             this.key34 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxAnswer = new System.Windows.Forms.TextBox();
             this.buttonEncrypt = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonDecrypt = new System.Windows.Forms.Button();
@@ -80,15 +79,6 @@ namespace KhoaGayAnCut
             this.textBoxMsg.Name = "textBoxMsg";
             this.textBoxMsg.Size = new System.Drawing.Size(362, 23);
             this.textBoxMsg.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(251, 190);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 15);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
             // 
             // btnCopy
             // 
@@ -427,7 +417,7 @@ namespace KhoaGayAnCut
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.49234F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.50766F));
-            this.tableLayoutPanel3.Controls.Add(this.textBox3, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.textBoxAnswer, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnCopy, 1, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(12, 318);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -437,14 +427,14 @@ namespace KhoaGayAnCut
             this.tableLayoutPanel3.Size = new System.Drawing.Size(457, 31);
             this.tableLayoutPanel3.TabIndex = 5;
             // 
-            // textBox3
+            // textBoxAnswer
             // 
-            this.textBox3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBox3.Location = new System.Drawing.Point(3, 4);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(339, 23);
-            this.textBox3.TabIndex = 1;
+            this.textBoxAnswer.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBoxAnswer.Location = new System.Drawing.Point(3, 4);
+            this.textBoxAnswer.Name = "textBoxAnswer";
+            this.textBoxAnswer.ReadOnly = true;
+            this.textBoxAnswer.Size = new System.Drawing.Size(339, 23);
+            this.textBoxAnswer.TabIndex = 1;
             // 
             // buttonEncrypt
             // 
@@ -455,6 +445,7 @@ namespace KhoaGayAnCut
             this.buttonEncrypt.TabIndex = 6;
             this.buttonEncrypt.Text = "Encrypt";
             this.buttonEncrypt.UseVisualStyleBackColor = true;
+            this.buttonEncrypt.Click += new System.EventHandler(this.buttonEncrypt_Click);
             // 
             // tableLayoutPanel4
             // 
@@ -490,7 +481,6 @@ namespace KhoaGayAnCut
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Form1";
             this.Text = "Form1";
@@ -502,14 +492,12 @@ namespace KhoaGayAnCut
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.TextBox textBoxMsg;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TextBox textBoxKey;
@@ -518,7 +506,7 @@ namespace KhoaGayAnCut
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TextBox key00;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxAnswer;
         private System.Windows.Forms.TextBox key41;
         private System.Windows.Forms.TextBox key40;
         private System.Windows.Forms.TextBox key42;
