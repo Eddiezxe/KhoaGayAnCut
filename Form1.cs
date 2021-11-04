@@ -24,6 +24,35 @@ namespace KhoaGayAnCut
             key30.Text = key[3, 0]; key31.Text = key[3, 1]; key32.Text = key[3, 2]; key33.Text = key[3, 3]; key34.Text = key[3, 4];
             key40.Text = key[4, 0]; key41.Text = key[4, 1]; key42.Text = key[4, 2]; key43.Text = key[4, 3]; key44.Text = key[4, 4];
         }
+        string ProcessKey( string keyword)
+        {
+            //c2
+            //add key vào đầu chuỗi default
+            //remove duplicate
+            // thêm chuỗi mới vào ma trận
+            string defaultChar = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
+            string temp = keyword + defaultChar;
+            string result = string.Empty;
+            for(int i = 0; i< temp.Length; i++)
+            {
+                if (!result.Contains(temp[i]))
+                    result += temp[i];
+            }
+            return result;
+        }
+        void addStringTo2DMatrix(string keyword, string[,] keyMatrix)
+        {
+            int count = 0;
+            for (int hang = 0; hang < 5; hang++)
+            {
+                for (int cot = 0; cot < 5; cot++)
+                {
+                        keyMatrix[hang, cot] = keyword[count].ToString();
+                        count++;
+                }       
+
+            }    
+        }
         void separateMsg(string msg, string[] separatedMsg)
         {
             string newMsg = msg;
@@ -42,28 +71,29 @@ namespace KhoaGayAnCut
         }
         void takeMesage()
         {
-            textBoxAnswer.Clear();
             string[] PairCharacter = new string[30];
-            string msg = "";
-            msg = textBoxMsg.Text.Trim().ToUpper();
+            string msg = textBoxMsg.Text.Trim().ToUpper(); ;
 
             separateMsg(msg, PairCharacter);
 
             string answer = string.Join(" ", PairCharacter);
-            textBoxAnswer.Text = answer;
+            //textBoxAnswer.Text = answer;     // test purpose   
+        }
+        void takeKey()
+        {
+            string keyword = textBoxKey.Text.Trim().ToUpper();
+            string[,] keyMatrix = new string[5, 5];
+  
+            addStringTo2DMatrix(ProcessKey(keyword), keyMatrix);
+            displayKeyMatrix(keyMatrix);
+            //textBoxAnswer.Text = ProcessKey(keyword); //test purpose
+
+
         }
 
         private void buttonEncrypt_Click(object sender, EventArgs e)
         {
-            string[,] keymatrix = new string[5, 5];
-            for(int i = 0; i<5; i++)
-            {
-                for(int j = 0; j < 5; j++)
-                {
-                    keymatrix[i, j] = "B";
-                }    
-            }
-            displayKeyMatrix(keymatrix);
+            takeKey();
             takeMesage();
         }
     }
