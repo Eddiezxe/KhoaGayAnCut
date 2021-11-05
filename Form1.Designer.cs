@@ -66,10 +66,18 @@ namespace KhoaGayAnCut
             this.buttonEncrypt = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonDecrypt = new System.Windows.Forms.Button();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonOutputToFile = new System.Windows.Forms.Button();
+            this.buttonInputFromFile = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxMsg
@@ -459,6 +467,7 @@ namespace KhoaGayAnCut
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(220, 30);
             this.tableLayoutPanel4.TabIndex = 8;
             // 
@@ -472,11 +481,83 @@ namespace KhoaGayAnCut
             this.buttonDecrypt.Text = "Decrypt";
             this.buttonDecrypt.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.button1, 1, 0);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(200, 100);
+            this.tableLayoutPanel5.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.Location = new System.Drawing.Point(103, 38);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 24);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Decrypt";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button2.Location = new System.Drawing.Point(3, 38);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(94, 24);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "Encrypt";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.buttonOutputToFile, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.buttonInputFromFile, 0, 0);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(246, 135);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(220, 30);
+            this.tableLayoutPanel6.TabIndex = 9;
+            // 
+            // buttonOutputToFile
+            // 
+            this.buttonOutputToFile.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.buttonOutputToFile.Location = new System.Drawing.Point(115, 3);
+            this.buttonOutputToFile.Name = "buttonOutputToFile";
+            this.buttonOutputToFile.Size = new System.Drawing.Size(99, 24);
+            this.buttonOutputToFile.TabIndex = 7;
+            this.buttonOutputToFile.Text = "Xuất File";
+            this.buttonOutputToFile.UseVisualStyleBackColor = true;
+            // 
+            // buttonInputFromFile
+            // 
+            this.buttonInputFromFile.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.buttonInputFromFile.Location = new System.Drawing.Point(5, 3);
+            this.buttonInputFromFile.Name = "buttonInputFromFile";
+            this.buttonInputFromFile.Size = new System.Drawing.Size(99, 24);
+            this.buttonInputFromFile.TabIndex = 6;
+            this.buttonInputFromFile.Text = "Đọc từ File";
+            this.buttonInputFromFile.UseVisualStyleBackColor = true;
+            this.buttonInputFromFile.Click += new System.EventHandler(this.buttonInputFromFile_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 361);
+            this.Controls.Add(this.tableLayoutPanel6);
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
@@ -491,6 +572,8 @@ namespace KhoaGayAnCut
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -534,6 +617,12 @@ namespace KhoaGayAnCut
         private System.Windows.Forms.Button buttonEncrypt;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button buttonDecrypt;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.Button buttonOutputToFile;
+        private System.Windows.Forms.Button buttonInputFromFile;
     }
 }
 
