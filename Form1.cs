@@ -16,7 +16,7 @@ namespace KhoaGayAnCut
         {
             InitializeComponent();
         }
-        void displayKeyMatrix(string[,] key) // đừng đụng vào
+        void displayKeyMatrix(string[,] key) // đừng đụng vào, hong thích, thích đụng vào được hong
         {
             key00.Text = key[0, 0]; key01.Text = key[0, 1]; key02.Text = key[0, 2]; key03.Text = key[0, 3]; key04.Text = key[0, 4];
             key10.Text = key[1, 0]; key11.Text = key[1, 1]; key12.Text = key[1, 2]; key13.Text = key[1, 3]; key14.Text = key[1, 4];
@@ -55,11 +55,14 @@ namespace KhoaGayAnCut
         }
         void separateMsg(string msg, string[] separatedMsg)
         {
-            string newMsg = msg;
-            if (msg.Length % 2 != 0) // nếu thông điệp có số ký tự lẻ thì thêm X rồi tách đôi
+            string newMsg = msg.Replace(" ", "");
+            //
+            //string newMsg = msg;
+            if (newMsg.Length % 2 != 0) // nếu thông điệp có số ký tự lẻ thì thêm X rồi tách đôi
             {
-                newMsg = msg + "X";
+                newMsg += "X";
             }
+            
             // nếu không thì loop
             for (int i = 0; i < newMsg.Length; i += 2) //  tách đôi
             {
@@ -67,17 +70,23 @@ namespace KhoaGayAnCut
                 separatedMsg[i] = characterPair;
             }
 
+            string temp = "";
+            for(int i = 0; i < separatedMsg.Length; i++)
+            {
+                temp += separatedMsg[i];
+            }
+
 
         }
         void takeMesage()
         {
             string[] PairCharacter = new string[30];
-            string msg = textBoxMsg.Text.Trim().ToUpper(); ;
+            string msg = textBoxMsg.Text.Trim().ToUpper(); 
 
             separateMsg(msg, PairCharacter);
 
             string answer = string.Join(" ", PairCharacter);
-            //textBoxAnswer.Text = answer;     // test purpose   
+            textBoxAnswer.Text = answer;     // test purpose   
         }
         void takeKey()
         {
