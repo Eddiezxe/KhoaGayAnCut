@@ -148,16 +148,16 @@ namespace KhoaGayAnCut
             {
                 if (firstCharInPair[0] + 1 > 4 && secondCharInPair[0] + 1 > 4)//nếu chỉ số cột giống nhau thì sẽ lấy ký tự ngay bên dưới
                 {
-                    //nếu chỉ số hàng lớn hơn 5 thì quay về hàng 0
-                    result += keyMatrix[0, firstCharInPair[1]] + keyMatrix[secondCharInPair[0] + 1, secondCharInPair[1]];
+                    //nếu chỉ số hàng lớn hơn 4 thì quay về hàng 0
+                    result += keyMatrix[0, firstCharInPair[1]] + keyMatrix[0, secondCharInPair[1]];
                 }
                 else if (secondCharInPair[0] + 1 > 4)
                 {
                     result += keyMatrix[firstCharInPair[0] + 1, firstCharInPair[1]] + keyMatrix[0, secondCharInPair[1]];
                 }
                 else if (firstCharInPair[0] + 1 > 4)
-                {
-                    result += keyMatrix[0, firstCharInPair[1]] + keyMatrix[0, secondCharInPair[1]];
+                {                    
+                    result += keyMatrix[0, firstCharInPair[1]] + keyMatrix[secondCharInPair[0] + 1, secondCharInPair[1]];
                 }
                 else
                 {
@@ -175,7 +175,7 @@ namespace KhoaGayAnCut
                 }
                 else //trường hợp còn lại là ký tự thứ 1 nằm bên tay trái so với ký tự thứ 2 trong ma trận
                 {
-                    result += keyMatrix[firstCharInPair[0] + rowCount, firstCharInPair[1]] + keyMatrix[secondCharInPair[0] - rowCount, secondCharInPair[1]];
+                    result += keyMatrix[firstCharInPair[0], firstCharInPair[1] - rowCount] + keyMatrix[secondCharInPair[0], secondCharInPair[1] + rowCount];
                 }
             }
 
