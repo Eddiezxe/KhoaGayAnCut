@@ -12,6 +12,9 @@ namespace KhoaGayAnCut
 {
     public partial class Form1 : Form
     {
+        private string[,] keyMatrix;
+        private string processedMsg;
+        private string[] PairCharacter;
         public Form1()
         {
             InitializeComponent();
@@ -80,18 +83,19 @@ namespace KhoaGayAnCut
         }
         void takeMesage()
         {
-            string[] PairCharacter = new string[30];
+            PairCharacter = new string[30];
             string msg = textBoxMsg.Text.Trim().ToUpper(); 
 
             separateMsg(msg, PairCharacter);
 
-            string answer = string.Join(" ", PairCharacter);
-            textBoxAnswer.Text = answer;     // test purpose   
+            //đổi answer thành processedMsg
+            processedMsg = string.Join(" ", PairCharacter);
+            //textBoxAnswer.Text = answer;     // test purpose   
         }
         void takeKey()
         {
             string keyword = textBoxKey.Text.Trim().ToUpper();
-            string[,] keyMatrix = new string[5, 5];
+            keyMatrix = new string[5, 5];
   
             addStringTo2DMatrix(ProcessKey(keyword), keyMatrix);
             displayKeyMatrix(keyMatrix);
@@ -99,11 +103,134 @@ namespace KhoaGayAnCut
 
 
         }
+        int[] charPositionInKeyMatrix(char temp)
+        {
+            int[] positionArray = new int[2];
+            for (int hang = 0; hang < 5; hang++)
+            {
+                for (int cot = 0; cot < 5; cot++)
+                {
+                    if (temp.Equals(keyMatrix[hang, cot].ToCharArray()[0]))
+                    {
+                        positionArray[0] = hang;
+                        positionArray[1] = cot;
+                        break;
+                    }
+                }
+            }
+            return positionArray;
+        }
+        string encryption(int[] firstCharInPair, int[] secondCharInPair) //hack não vl 
+        {
+            string result = "";
+            if(firstCharInPair[0] == secondCharInPair[0])
+            {
+                if (firstCharInPair[1] + 1 > 4 && secondCharInPair[1] + 1 > 4)//nếu chỉ số hàng giống nhau thì sẽ lấy ký tự bên tay phải
+                {
+                    //nếu chỉ số cột lớn hơn 5 thì quay về cột 0
+                    result += keyMatrix[firstCharInPair[0], 0] + keyMatrix[secondCharInPair[0], 0];
+                }
+                else if(secondCharInPair[1] + 1 > 4)
+                {
+                    result += keyMatrix[firstCharInPair[0], firstCharInPair[1] + 1] + keyMatrix[secondCharInPair[0], 0]; 
+                }
+                else if (firstCharInPair[1] + 1 > 4)
+                {
+                    result += keyMatrix[firstCharInPair[0], 0] + keyMatrix[secondCharInPair[0], secondCharInPair[1] + 1];
+                }
+                else
+                {
+                    result += keyMatrix[firstCharInPair[0], firstCharInPair[1] + 1] + keyMatrix[secondCharInPair[0], secondCharInPair[1] + 1];
+                }
 
+            }
+            else if(firstCharInPair[1] == secondCharInPair[1])
+            {
+                if (firstCharInPair[0] + 1 > 4 && secondCharInPair[0] + 1 > 4)//nếu chỉ số cột giống nhau thì sẽ lấy ký tự ngay bên dưới
+                {
+                    //nếu chỉ số hàng lớn hơn 5 thì quay về hàng 0
+                    result += keyMatrix[0, firstCharInPair[1]] + keyMatrix[secondCharInPair[0] + 1, secondCharInPair[1]];
+                }
+                else if (secondCharInPair[0] + 1 > 4)
+                {
+                    result += keyMatrix[firstCharInPair[0] + 1, firstCharInPair[1]] + keyMatrix[0, secondCharInPair[1]];
+                }
+                else if (firstCharInPair[0] + 1 > 4)
+                {
+                    result += keyMatrix[0, firstCharInPair[1]] + keyMatrix[0, secondCharInPair[1]];
+                }
+                else
+                {
+                    result += keyMatrix[firstCharInPair[0] + 1, firstCharInPair[1]] + keyMatrix[secondCharInPair[0] + 1, secondCharInPair[1]];
+                }
+
+            }
+            else
+            {
+                //trường hợp khác cột và hàng thì chỉ cần đếm số cột cách giữa 2 ký tự rồi trừ qua cộng lại chỉ số :v (I think so)
+                int rowCount = firstCharInPair[1] - secondCharInPair[1];
+                if(rowCount > 0)//trường hợp này là ký tự thứ 1 nằm bên tay phải so với ký tự thứ 2 trong ma trận  
+                {
+                    result += keyMatrix[firstCharInPair[0], firstCharInPair[1] - rowCount] + keyMatrix[secondCharInPair[0], secondCharInPair[1] + rowCount] ;
+                }
+                else //trường hợp còn lại là ký tự thứ 1 nằm bên tay trái so với ký tự thứ 2 trong ma trận
+                {
+                    result += keyMatrix[firstCharInPair[0] + rowCount, firstCharInPair[1]] + keyMatrix[secondCharInPair[0] - rowCount, secondCharInPair[1]];
+                }
+            }
+
+            return result;
+        }
+        void takeAction()
+        {
+            string result = "";
+            int[] firstCharInPair = new int[2] {10, 10};
+            int[] secondCharInPair = new int[2] {10, 10};
+            
+            int spaceCount = 0;
+            int charCount = 0;
+            foreach (char c in processedMsg)
+            {
+                if (Char.IsWhiteSpace(processedMsg, charCount))
+                {
+                    spaceCount++;
+                    if (spaceCount == 1)
+                    {
+                        //Xử lý 2 ký tự liền nhau trước khi khoảng trắng
+                        string temp = encryption(firstCharInPair, secondCharInPair);
+                        result += temp;
+                    }
+                    else
+                    {
+                        /*Array.Clear(firstCharInPair, 3, 2);
+                        Array.Clear(secondCharInPair, 3, 2);*/
+                        firstCharInPair = new int[2] { 10, 10 };
+                        secondCharInPair = new int[2] { 10, 10 };
+                    }
+                }
+                else
+                {
+                    spaceCount = 0;
+                    if (firstCharInPair[0] == 10)
+                    {
+                        firstCharInPair = charPositionInKeyMatrix(c);
+                    }
+                    else
+                    {
+                        secondCharInPair = charPositionInKeyMatrix(c);
+                    }
+                }
+                charCount++;
+
+            }
+            //textBoxAnswer.Text = processedMsg;
+            textBoxAnswer.Text = result;
+        }
         private void buttonEncrypt_Click(object sender, EventArgs e)
         {
             takeKey();
             takeMesage();
+            takeAction();
         }
     }
 }       /*
