@@ -50,8 +50,12 @@ namespace KhoaGayAnCut
             {
                 for (int cot = 0; cot < 5; cot++)
                 {
-                        keyMatrix[hang, cot] = keyword[count].ToString();
-                        count++;
+                        
+                       
+                            keyMatrix[hang, cot] = keyword[count].ToString();
+                            count++;
+                          
+                        
                 }       
 
             }    
@@ -232,7 +236,105 @@ namespace KhoaGayAnCut
             takeMesage();
             takeAction();
         }
-    }
+        //Xóa dữ liệu sau khi thực hiện 1 trong 2 
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
+            textBoxMsg.Text = "";
+            textBoxKey.Text = "";
+            textBoxAnswer.Text = "";
+            keyMatrix = new string[5, 5];
+            for(int i=0;i<5;i++)
+            {
+                for(int j=0;j<5;j++)
+                {
+                    keyMatrix[i, j] = "";
+                }    
+            }
+            displayKeyMatrix(keyMatrix);
+        }
+
+        ///DECRYPTION
+        ///Tìm vị trí và trả về vị trí
+        void SearchCharacter(string[,] keyMatrix,string a,string b,int[] arrayPos)
+        {
+            keyMatrix = new string[5,5];
+            //kiểm tra nếu là I thì đổi thành J(ngược lại)
+            if(a=="j")
+            {
+                a = "i";
+            }    
+            else if (b=="j")
+            {
+                b="i";
+            }    
+            //tiến hành tìm và trả về vị trí
+            for(int row =0;row < 5;row++)
+            {
+                for(int col = 0;col < 5;col++)
+                {
+                    //nếu phần tử trong ma trận = kí tự đầu tiên
+                    if(keyMatrix[row,col] == a)
+                    {
+                        arrayPos[0] = row;
+                        arrayPos[1] = col;
+                    }    
+                    //còn nếu mà bằng kí tự thứ 2
+                    else if(keyMatrix[row,col] == b)
+                    {
+                        arrayPos[2] = row;
+                        arrayPos[3] = col;
+                    }    
+                }    
+            }    
+        }
+        //sau hàm SearchCharacter thì ta được một mảng 
+        void Decryption(string[,] keyMatrix,string keyword,int length)
+        {
+            keyMatrix = new string[5, 5];
+            //length là độ dài của mảng gòm các kí tự mà mình thu được
+            int[] newCharacter = new int[4];
+            //duyệt một lần 2 kí tự
+            for(int i =0;i<length;i+=2)
+            {
+                //gọi lại hàm search
+                string t1 = keyword[i].ToString();
+                string t2 = keyword[i + 1].ToString();
+                SearchCharacter(keyMatrix, t1, t2, newCharacter);   
+                if(newCharacter[0] == newCharacter[2])//cùng 1 hàng => dịch trái
+                {
+                    t1 = keyMatrix[newCharacter[0], (newCharacter[1] - 1) % 5];
+                    t2 = keyMatrix[newCharacter[0], (newCharacter[3] - 1) % 5];
+                }    
+                else if(newCharacter[1]==newCharacter[3])//cùng 1 cột
+                {
+                    t1 = keyMatrix[(newCharacter[0] - 1) % 5, newCharacter[1]];
+                    t2 = keyMatrix[(newCharacter[2] - 1) % 5, newCharacter[1]];
+                }    
+                else
+                {
+                    t1 = keyMatrix[newCharacter[0], newCharacter[3]];
+                    t2 = keyMatrix[newCharacter[1], newCharacter[2]];
+                }    
+            }    
+        }
+        void DecryptCipherText(string keyword,string CipherText)
+        {
+           string[,] keyMatrix = new string[5, 5];
+            int length = CipherText.Length;
+            Decryption(keyMatrix, keyword, length);
+        }
+         private void buttonDecrypt_Click(object sender, EventArgs e)
+         {
+            //conver to UPCase and display on matrix
+            takeKey();
+            string key = textBoxKey.Text;
+            string mess = textBoxMsg.Text;
+            DecryptCipherText(key,mess);
+         }
+
+
+
+}
 }       /*
             key00.Text = key[0][0]; key01.Text = key[0][1]; key02.Text = key[0][2]; key03.Text = key[0][3]; key04.Text = key[0][4];
             key10.Text = key[1][0]; key11.Text = key[1][1]; key12.Text = key[1][2]; key13.Text = key[1][3]; key14.Text = key[1][4];

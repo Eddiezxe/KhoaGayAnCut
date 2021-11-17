@@ -66,6 +66,7 @@ namespace KhoaGayAnCut
             this.buttonEncrypt = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonDecrypt = new System.Windows.Forms.Button();
+            this.btn_clear = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -506,12 +507,24 @@ namespace KhoaGayAnCut
             this.buttonDecrypt.TabIndex = 7;
             this.buttonDecrypt.Text = "Decrypt";
             this.buttonDecrypt.UseVisualStyleBackColor = true;
+            this.buttonDecrypt.Click += new System.EventHandler(this.buttonDecrypt_Click);
+            // 
+            // btn_clear
+            // 
+            this.btn_clear.Location = new System.Drawing.Point(287, 191);
+            this.btn_clear.Name = "btn_clear";
+            this.btn_clear.Size = new System.Drawing.Size(113, 39);
+            this.btn_clear.TabIndex = 9;
+            this.btn_clear.Text = "Clear";
+            this.btn_clear.UseVisualStyleBackColor = true;
+            this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(553, 481);
+            this.Controls.Add(this.btn_clear);
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
@@ -570,6 +583,7 @@ namespace KhoaGayAnCut
         private System.Windows.Forms.Button buttonEncrypt;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button buttonDecrypt;
+        private System.Windows.Forms.Button btn_clear;
     }
 }
 
