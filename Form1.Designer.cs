@@ -1,5 +1,5 @@
 ﻿
-namespace KhoaGayAnCut
+namespace Playfair
 {
     partial class Form1
     {
@@ -84,7 +84,7 @@ namespace KhoaGayAnCut
             // 
             // btnCopy
             // 
-            this.btnCopy.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.btnCopy.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCopy.Location = new System.Drawing.Point(433, 4);
             this.btnCopy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

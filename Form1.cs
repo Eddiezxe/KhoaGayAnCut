@@ -8,18 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace KhoaGayAnCut
+namespace Playfair
 {
     public partial class Form1 : Form
     {
         private string[,] keyMatrix;
         private string processedMsg;
-        private string[] PairCharacter; // 
+        private string[] PairCharacter;  
         public Form1()
         {
             InitializeComponent();
         }
-        void displayKeyMatrix(string[,] key) // đừng đụng vào, hong thích, thích đụng vào được hong
+        void displayKeyMatrix(string[,] key) 
         {
             key00.Text = key[0, 0]; key01.Text = key[0, 1]; key02.Text = key[0, 2]; key03.Text = key[0, 3]; key04.Text = key[0, 4];
             key10.Text = key[1, 0]; key11.Text = key[1, 1]; key12.Text = key[1, 2]; key13.Text = key[1, 3]; key14.Text = key[1, 4];
@@ -72,13 +72,6 @@ namespace KhoaGayAnCut
                 string characterPair = newMsg[i].ToString() + newMsg[i + 1].ToString();
                 separatedMsg[i] = characterPair;
             }
-
-            string temp = "";
-            for(int i = 0; i < separatedMsg.Length; i++)
-            {
-                temp += separatedMsg[i];
-            }
-           
 
         }
         void takeMesage()
@@ -295,36 +288,6 @@ namespace KhoaGayAnCut
                 }    
             }    
         }
-        //sau hàm SearchCharacter thì ta được một mảng 
-/*        void Decryption(string[,] keyMatrix,string keyword,int length)
-        {
-            keyMatrix = new string[5, 5];
-            //length là độ dài của mảng gòm các kí tự mà mình thu được
-            int[] newCharacter = new int[4];
-            //duyệt một lần 2 kí tự
-            for(int i =0;i<length;i+=2)
-            {
-                //gọi lại hàm search
-                string t1 = keyword[i].ToString();
-                string t2 = keyword[i + 1].ToString();
-                SearchCharacter(keyMatrix, t1, t2, newCharacter);   
-                if(newCharacter[0] == newCharacter[2])//cùng 1 hàng => dịch trái
-                {
-                    t1 = keyMatrix[newCharacter[0], (newCharacter[1] - 1) % 5];
-                    t2 = keyMatrix[newCharacter[0], (newCharacter[3] - 1) % 5];
-                }    
-                else if(newCharacter[1]==newCharacter[3])//cùng 1 cột
-                {
-                    t1 = keyMatrix[(newCharacter[0] - 1) % 5, newCharacter[1]];
-                    t2 = keyMatrix[(newCharacter[2] - 1) % 5, newCharacter[1]];
-                }    
-                else
-                {
-                    t1 = keyMatrix[newCharacter[0], newCharacter[3]];
-                    t2 = keyMatrix[newCharacter[1], newCharacter[2]];
-                }    
-            }    
-        }*/
         void DecryptCipherText(string keyword,string CipherText)
         {
            string[,] keyMatrix = new string[5, 5];
@@ -398,8 +361,6 @@ namespace KhoaGayAnCut
                     }
                     else
                     {
-                        /*Array.Clear(firstCharInPair, 3, 2);
-                        Array.Clear(secondCharInPair, 3, 2);*/
                         firstCharInPair = new int[2] { 10, 10 };
                         secondCharInPair = new int[2] { 10, 10 };
                     }
@@ -419,7 +380,6 @@ namespace KhoaGayAnCut
                 charCount++;
 
             }
-            //textBoxAnswer.Text = processedMsg;
             textBoxAnswer.Text = result;
         }
 
@@ -486,10 +446,3 @@ namespace KhoaGayAnCut
         }
     }
 }
-/*
-            key00.Text = key[0][0]; key01.Text = key[0][1]; key02.Text = key[0][2]; key03.Text = key[0][3]; key04.Text = key[0][4];
-            key10.Text = key[1][0]; key11.Text = key[1][1]; key12.Text = key[1][2]; key13.Text = key[1][3]; key14.Text = key[1][4];
-            key20.Text = key[2][0]; key21.Text = key[2][1]; key22.Text = key[2][2]; key23.Text = key[2][3]; key24.Text = key[2][4];
-            key30.Text = key[3][0]; key31.Text = key[3][1]; key32.Text = key[3][2]; key33.Text = key[3][3]; key34.Text = key[3][4];
-            key40.Text = key[4][0]; key41.Text = key[4][1]; key42.Text = key[4][2]; key43.Text = key[4][3]; key44.Text = key[4][4];
-         */
