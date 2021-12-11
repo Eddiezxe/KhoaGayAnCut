@@ -83,7 +83,6 @@ namespace Playfair
 
             //đổi answer thành processedMsg
             processedMsg = string.Join(" ", PairCharacter);  
-            //textBoxAnswer.Text = answer;     // test purpose   
         }
         void takeKey()
         {
@@ -92,9 +91,6 @@ namespace Playfair
   
             addStringTo2DMatrix(ProcessKey(keyword), keyMatrix);
             displayKeyMatrix(keyMatrix);
-            //textBoxAnswer.Text = ProcessKey(keyword); //test purpose
-
-
         }
         int[] charPositionInKeyMatrix(char temp) // temp = 'T'
         {
@@ -114,72 +110,25 @@ namespace Playfair
             return positionArray;
         }
 
-        string encryption(int[] firstCharInPair, int[] secondCharInPair) //hack não vl, bớt hack não rồi 
+        string encryption(int[] firstCharInPair, int[] secondCharInPair) 
         {
             string result = "";
             if(firstCharInPair[0] == secondCharInPair[0]) // cùng hàng 
             {
-
                 result += keyMatrix[firstCharInPair[0], (firstCharInPair[1] + 1)% 5]
                            + keyMatrix[secondCharInPair[0], (secondCharInPair[1] + 1) % 5];
 
-/* Code cũ            
-                if (firstCharInPair[1] + 1 > 4 && secondCharInPair[1] + 1 > 4)//nếu chỉ số hàng giống nhau thì sẽ lấy ký tự bên tay phải
-                {
-                    //nếu chỉ số cột lớn hơn 5 thì quay về cột 0
-                    result += keyMatrix[firstCharInPair[0], 0] + keyMatrix[secondCharInPair[0], 0];
-                }
-                else if (secondCharInPair[1] + 1 > 4)
-                {
-                    result += keyMatrix[firstCharInPair[0], firstCharInPair[1] + 1] + keyMatrix[secondCharInPair[0], 0];
-                }
-                else if (firstCharInPair[1] + 1 > 4)
-                {
-                    result += keyMatrix[firstCharInPair[0], 0] + keyMatrix[secondCharInPair[0], secondCharInPair[1] + 1];
-                }
-                else
-                {
-                    result += keyMatrix[firstCharInPair[0], firstCharInPair[1] + 1] + keyMatrix[secondCharInPair[0], secondCharInPair[1] + 1];
-                }
-*/
             }
             else if(firstCharInPair[1] == secondCharInPair[1])
             {
-               
                 result = keyMatrix[(firstCharInPair[0] + 1) % 5, firstCharInPair[1]]
                             + keyMatrix[(secondCharInPair[0] + 1) % 5, secondCharInPair[1]];
-/*  Code cũ
-                if (firstCharInPair[0] + 1 > 4 && secondCharInPair[0] + 1 > 4)//nếu chỉ số cột giống nhau thì sẽ lấy ký tự ngay bên dưới
-                {
-                    //nếu chỉ số hàng lớn hơn 4 thì quay về hàng 0
-                    result += keyMatrix[0, firstCharInPair[1]] + keyMatrix[0, secondCharInPair[1]];
-                }
-                else if (secondCharInPair[0] + 1 > 4)
-                {
-                    result += keyMatrix[firstCharInPair[0] + 1, firstCharInPair[1]] + keyMatrix[0, secondCharInPair[1]];
-                }
-                else if (firstCharInPair[0] + 1 > 4)
-                {                    
-                    result += keyMatrix[0, firstCharInPair[1]] + keyMatrix[secondCharInPair[0] + 1, secondCharInPair[1]];
-                }
-                else
-                {
-                    result += keyMatrix[firstCharInPair[0] + 1, firstCharInPair[1]] + keyMatrix[secondCharInPair[0] + 1, secondCharInPair[1]];
-                }
-*/
             }
             else
             {
                 //trường hợp khác cột và hàng thì chỉ cần đếm số cột cách giữa 2 ký tự rồi trừ qua cộng lại chỉ số :v (I think so)
                 int rowCount = firstCharInPair[1] - secondCharInPair[1];
-                if(rowCount > 0)//trường hợp này là ký tự thứ 1 nằm bên tay phải so với ký tự thứ 2 trong ma trận  
-                {
-                    result += keyMatrix[firstCharInPair[0], firstCharInPair[1] - rowCount] + keyMatrix[secondCharInPair[0], secondCharInPair[1] + rowCount] ;
-                }
-                else //trường hợp còn lại là ký tự thứ 1 nằm bên tay trái so với ký tự thứ 2 trong ma trận
-                {
-                    result += keyMatrix[firstCharInPair[0], firstCharInPair[1] - rowCount] + keyMatrix[secondCharInPair[0], secondCharInPair[1] + rowCount];
-                }
+                result += keyMatrix[firstCharInPair[0], firstCharInPair[1] - rowCount] + keyMatrix[secondCharInPair[0], secondCharInPair[1] + rowCount] ;
             }
 
             return result;
@@ -205,8 +154,6 @@ namespace Playfair
                     }
                     else
                     {
-                        /*Array.Clear(firstCharInPair, 3, 2);
-                        Array.Clear(secondCharInPair, 3, 2);*/
                         firstCharInPair = new int[2] { 10, 10 };
                         secondCharInPair = new int[2] { 10, 10 };
                     }
@@ -226,7 +173,6 @@ namespace Playfair
                 charCount++;
 
             }
-            //textBoxAnswer.Text = processedMsg;
             textBoxAnswer.Text = result;
         }
 
@@ -384,7 +330,7 @@ namespace Playfair
         }
 
 
-        string Decryption(int[] firstCharInPair, int[] secondCharInPair) //hack não vl 
+        string Decryption(int[] firstCharInPair, int[] secondCharInPair) 
         {
             string result = "";
             if (firstCharInPair[0] == secondCharInPair[0]) // cùng hàng 
